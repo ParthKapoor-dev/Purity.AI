@@ -23,7 +23,7 @@ export default function RootLayout({
   authModal: ReactNode
 }) {
   return (
-    <html lang="en" className={cn("bg-white text-slate-900 antialiased light", inter.className)}>
+    <html lang="en" className={cn("bg-background text-slate-900 antialiased light", inter.className)}>
       <body className="min-h-screen bg-slate-50 antialiased">
         <Providers>
           <Navbar />
