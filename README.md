@@ -32,6 +32,92 @@ Purity AI is an AI-driven hiring automation platform designed to streamline recr
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/parthkapoor-dev/purity-ai.git
+   git clone https://github.com/your-username/purity-ai.git
    cd purity-ai
    ```
+
+2. **Set Up the Frontend**
+
+   - Navigate to the `frontend` directory:
+     ```bash
+     cd frontend
+     ```
+   - Install dependencies:
+     ```bash
+     npm install
+     ```
+   - Start the development server:
+     ```bash
+     npm run dev
+     ```
+
+3. **Set Up the Backend**
+
+   - Navigate to the `backend` directory:
+     ```bash
+     cd backend
+     ```
+   - Create a virtual environment:
+     ```bash
+     python3 -m venv env
+     source env/bin/activate  # For Unix-based systems
+     ```
+   - Install dependencies:
+     ```bash
+     pip install -r requirements.txt
+     ```
+   - Start the backend server (update port configurations if necessary):
+     ```bash
+     python app.py
+     ```
+
+4. **Environment Variables**
+
+   Create a `.env` file in both `frontend` and `backend` directories with the necessary environment variables. A sample of required variables can be found in `.env.example` (add as needed based on your configuration).
+
+## Usage
+
+- **Candidate Workflow**: Candidates can create an account, upload a resume, and complete a questionnaire. They’ll receive periodic reminders to update their information.
+- **Recruiter Workflow**: Recruiters can use a chat-like interface to enter specific job requirements. Purity AI will process the query and return ranked candidates based on fit.
+
+## Project Structure
+
+```plaintext
+purity-ai/
+├── frontend/                  # Next.js app for frontend
+│   └── ...                    # UI components, pages, and styles
+├── backend/                   # Python backend for AI processing
+│   ├── env/                   # Virtual environment (not tracked in Git)
+│   ├── app.py                 # Main backend server file
+│   ├── model/                 # Folder for AI models and resume parsing
+│   └── requirements.txt       # Python dependencies
+└── README.md                  # Project documentation
+```
+
+## AI Functionality
+
+- **Resume Parsing**: Uses spaCy to extract skills, experiences, and key phrases from resumes.
+- **Candidate Ranking**: Based on a scoring algorithm using scikit-learn, candidates are ranked on a query-specific basis.
+
+## Contributing
+
+We welcome contributions! Please follow the steps below:
+
+1. Fork the repository.
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit changes and push to your fork:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+4. Open a pull request in the main repository.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For questions or suggestions, please reach out to [Your Email](mailto:your-email@example.com).
