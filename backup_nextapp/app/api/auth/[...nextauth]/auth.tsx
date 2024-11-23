@@ -16,9 +16,11 @@ export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+
     }),
   ],
+
   callbacks: {
     async session({ token, session }) {
       if (token) {
@@ -27,20 +29,36 @@ export const authOptions: NextAuthOptions = {
         session.user.email = token.email;
         session.user.image = token.picture;
         session.user.username = token.username;
+        session.user.role = token.role;
       }
       return session;
     },
 
-    async jwt({ token, user }) {
-      const dbUser = await prisma.user.findFirst({
+    async jwt({ token, account, profile }) {
+
+      const cookieStore = await cookies();
+      const user_role = cookieStore.get('user_role')?.value;
+      let role: "CANDIDATE" | "RECRUITER" = "CANDIDATE"
+      if (user_role == "RECRUITER") role = "RECRUITER"
+
+      console.log(role)
+
+      let dbUser = await prisma.user.findFirst({
         where: {
           email: token.email
         }
       });
 
       if (!dbUser) {
-        token.id = user.id;
-        return token;
+        dbUser = await prisma.user.create({
+          data: {
+            email: token.email!,
+            name: token.name,
+            image: token.picture,
+            username: nanoid(10),
+            role: role,
+          },
+        });
       }
 
       if (!dbUser.username) {
@@ -54,11 +72,6 @@ export const authOptions: NextAuthOptions = {
         })
       };
 
-      const cookieStore = await cookies();
-      const user_role = cookieStore.get('user_role')?.value;
-      let role: "CANDIDATE" | "RECRUITER" = "CANDIDATE"
-      if (user_role == "RECRUITER") role = "RECRUITER"
-
       if (dbUser.role == null)
         await prisma.user.update({
           where: { email: dbUser.email || "" },
@@ -71,16 +84,15 @@ export const authOptions: NextAuthOptions = {
         email: dbUser.email,
         picture: dbUser.image,
         username: dbUser.username,
-        role : dbUser.role
+        role: dbUser.role != null ? dbUser.role : role
       }
     },
 
     redirect() {
       return "/"
     }
-
   }
 };
 
 
-export const getAuthSession = ()=> getServerSession(authOptions)
+export const getAuthSession = () => getServerSession(authOptions)

@@ -8,9 +8,11 @@ import { useToast } from "../ui/use-toast";
 import { Loader2 } from "lucide-react";
 import { GoogleSignIn } from "@/app/(actions)/authActions";
 
-interface UserAuthInterface extends React.HTMLAttributes<HTMLDivElement> { }
+interface UserAuthInterface extends React.HTMLAttributes<HTMLDivElement> { 
+  role : "CANDIDATE" | "RECRUITER"
+}
 
-export default function UserAuthForm({ className }: UserAuthInterface) {
+export default function UserAuthForm({ className , role }: UserAuthInterface) {
 
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
@@ -18,7 +20,7 @@ export default function UserAuthForm({ className }: UserAuthInterface) {
   async function handleGoogleLogin() {
     startTransition(async () => {
       try {
-        await GoogleSignIn();
+        await GoogleSignIn(role);
       } catch (error) {
         console.log(error);
         toast({

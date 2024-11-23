@@ -5,7 +5,9 @@ import TechStackList from "@/components/Home/TechStackList";
 
 export default function App() {
 
-  return (
+  console.log("Hello World")
+
+  return ( 
     <div className="py-2 mb-10 flex flex-col gap-8">
 
       <div className="mt-4 flex gap-8 max-md:flex-col">
