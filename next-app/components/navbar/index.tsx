@@ -18,9 +18,9 @@ export default async function Navbar() {
         <div className="flex gap-16 max-md:gap-6 justify-center items-center">
 
           <Link href={"/"} className="flex gap-4 items-center">
-            <Icons.nextLogo className="h-4" />
+            {/* <Icons.nextLogo className="h-4" /> */}
             <p className="hidden text-zinc-700 text-lg font-medium md:block">
-              PURITY AI
+              Purity AI
             </p>
           </Link>
 
