@@ -9,6 +9,7 @@ import UserNav from "./UserNav";
 export default async function Navbar() {
 
   const session = await getAuthSession();
+  const isCand = session?.user.role == "CANDIDATE";
 
   return (
     <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-[20] py-2">
@@ -19,12 +20,12 @@ export default async function Navbar() {
           <Link href={"/"} className="flex gap-4 items-center">
             <Icons.nextLogo className="h-4" />
             <p className="hidden text-zinc-700 text-lg font-medium md:block">
-              Create Next JS
+              PURITY AI
             </p>
           </Link>
 
-          <Link href={"/docs"} className="text-zinc-700 text-lg font-medium flex justify-center items-center">
-            Docs
+          <Link href={isCand ? "/cand/dash" : "/rec/dash"} className="text-zinc-700 text-lg font-medium flex justify-center items-center">
+            Dash
           </Link>
         </div>
 

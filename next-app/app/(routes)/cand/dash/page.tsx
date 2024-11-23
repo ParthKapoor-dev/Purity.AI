@@ -1,20 +1,20 @@
 import { getAuthSession } from "@/app/api/auth/[...nextauth]/auth"
 import { prisma } from "@/prisma/db";
+import UploadResume from "./UploadResume";
 
 export default async function HomePage() {
 
     const session = await getAuthSession();
 
-    const user = await prisma.user.findFirst({
-        where: { email: session?.user.email }
-    });
+    const profile = await prisma.profile.findFirst({
+        where: { userId : session?.user.id }
+    })
 
-    console.log("Hello World")
-    console.log(user);
+    console.log(profile)
 
-    // console.log(profile);
-
-
+    if( !profile){
+        return <UploadResume />
+    }
 
     return (
         <div>
