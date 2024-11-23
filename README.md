@@ -1,6 +1,6 @@
 # Purity AI - Hiring Automation Platform
 
-Purity AI is an AI-driven hiring automation platform designed to streamline recruitment by evaluating candidates based on their resumes, experience, and answers to specific questionnaires. With the help of AI, recruiters can search for candidates based on specific job requirements and receive ranked results of suitable matches. This project leverages Next.js for the full-stack web framework and Python for AI processing.
+Purity AI is an AI-driven hiring automation platform designed to streamline recruitment by evaluating candidates based on their resumes, experience, and answers to specific questionnaires. With the help of AI, recruiters can search for candidates based on specific job requirements and receive ranked results of suitable matches. This project leverages Next.js/React.js for the full-stack web framework and Python for AI processing.
 
 ## Features
 
