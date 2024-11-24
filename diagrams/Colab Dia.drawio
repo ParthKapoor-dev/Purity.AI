@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.9.0">
+  <diagram name="Page-1" id="SNE1HmwInn2z7xxRQhiP">
+    <mxGraphModel dx="989" dy="551" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-8" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="wNL4AaKvywY6EFF4VpWm-1" target="wNL4AaKvywY6EFF4VpWm-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-1" value="Candidate" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="180" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="wNL4AaKvywY6EFF4VpWm-3" target="wNL4AaKvywY6EFF4VpWm-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-3" value="Recruiter" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="120" y="510" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="wNL4AaKvywY6EFF4VpWm-4" target="wNL4AaKvywY6EFF4VpWm-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-4" value="PURITY AI" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="365" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-5" value="Database" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="670" y="350" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-11" value="&lt;font color=&quot;#007fff&quot;&gt;1. Login&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#007fff&quot;&gt;2. Upload Resume&lt;br&gt;3. Send Attempted Test&lt;br&gt;4. Send Response to&amp;nbsp; Message&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="190" y="195" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-12" value="&lt;font color=&quot;#007fff&quot;&gt;1. Login&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#007fff&quot;&gt;2. Store Resume&lt;br&gt;3. Receive Test Score&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="485" y="280" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-13" value="&lt;font color=&quot;#cc6600&quot;&gt;1. Login&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#cc6600&quot;&gt;2. Send Query&lt;br&gt;3. Create Quentionnarie&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="420" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-14" value="&lt;font color=&quot;#cc6600&quot;&gt;1. Login&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#cc6600&quot;&gt;2.&amp;nbsp; Find Eligible Candidates&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="625" y="290" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-15" value="&lt;font color=&quot;#99004d&quot;&gt;1. Login&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#99004d&quot;&gt;2. Send Query&lt;br&gt;3. Create Quentionnarie&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="510" y="410" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-16" value="&lt;font color=&quot;#99004d&quot;&gt;1. Get Ranked Matches&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#99004d&quot;&gt;2. Get Final List&lt;br&gt;3. Get Message Reply&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="190" y="510" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-17" value="&lt;font color=&quot;#99004d&quot;&gt;1. Get Questionnaire&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#99004d&quot;&gt;2. Get Recruiters Message&lt;br&gt;&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="110" y="290" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-19" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="625" y="400" as="sourcePoint" />
+            <mxPoint x="505" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-20" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="530" y="350" as="sourcePoint" />
+            <mxPoint x="650" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-22" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="450" as="sourcePoint" />
+            <mxPoint x="320" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-23" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="450" as="sourcePoint" />
+            <mxPoint x="270" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-24" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="280" as="sourcePoint" />
+            <mxPoint x="330" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wNL4AaKvywY6EFF4VpWm-25" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="360" as="sourcePoint" />
+            <mxPoint x="280" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
