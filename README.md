@@ -1,22 +1,24 @@
 # Purity AI - Hiring Automation Platform
 
-Purity AI is an AI-driven hiring automation platform designed to streamline recruitment by evaluating candidates based on their resumes, experience, and answers to specific questionnaires. With the help of AI, recruiters can search for candidates based on specific job requirements and receive ranked results of suitable matches. This project leverages Next.js/React.js for the full-stack web framework and Python for AI processing.
+Purity AI is an AI-driven hiring automation platform designed to streamline recruitment by evaluating candidates based on their resumes, experience, and answers to specific questionnaires. Recruiters can query the system for candidates that meet specific job requirements, and AI ranks suitable matches. The platform leverages Next.js/React.js for the full-stack web framework and Python for AI processing.
 
 ## Features
 
-- **Candidate Profile Management**: Candidates can create an account, upload their resume, and answer a questionnaire.
-- **Automated Resume Parsing**: Extracts key information from resumes using an Applicant Tracking System (ATS).
-- **Questionnaire-Based Evaluation**: Allows candidates to complete aptitude and experience-based questionnaires.
-- **Recruiter Search**: Recruiters can query candidates based on job-specific criteria and experience, with ranked results based on candidate suitability.
-- **Automatic Notifications**: Monthly or periodic reminders for candidates to update their profiles.
+- **Candidate Profile Management**: Candidates can create accounts and upload resumes associated with their unique user ID.
+- **Automated Resume Parsing**: Extracts key information (e.g., name, skills, experiences, projects) using AI.
+- **Recruiter Search**: Allows recruiters to query candidates based on specific criteria. Results return a ranked list of user IDs for matching candidates.
+- **AI-Powered Matching**: Uses semantic embeddings to compare recruiter queries with candidate profiles.
+- **Automatic Notifications**: Monthly reminders for candidates to update their profiles.
 
 ## Technologies Used
 
-- **Frontend**: Next.js, React
-- **Backend**: Python (AI processing), REST API endpoints
-- **Database**: TBD (e.g., PostgreSQL, MongoDB)
-- **AI/ML Libraries**: scikit-learn, spaCy (for resume parsing), Pandas
-- **Hosting and Deployment**: Docker (for containerization), Vercel/Heroku/AWS (for production deployment)
+- **Frontend**: Next.js, React.js
+- **Backend**: Python (FastAPI), REST API
+- **Database**: MongoDB (for candidate data)
+- **AI Libraries**: spaCy (resume parsing), Sentence Transformers (semantic search), Pandas
+- **Hosting and Deployment**: Docker (for containerization), Vercel/AWS (production deployment)
+
+---
 
 ## Getting Started
 
@@ -24,7 +26,7 @@ Purity AI is an AI-driven hiring automation platform designed to streamline recr
 
 - Node.js and npm
 - Python 3.x and pip
-- Virtual environment setup (recommended)
+- MongoDB instance (local or cloud, e.g., MongoDB Atlas)
 - Docker (optional, for containerized development)
 
 ### Setup
@@ -66,19 +68,38 @@ Purity AI is an AI-driven hiring automation platform designed to streamline recr
      ```bash
      pip install -r requirements.txt
      ```
-   - Start the backend server (update port configurations if necessary):
+   - Start the backend server:
      ```bash
-     python app.py
+     uvicorn app.main:app --reload
      ```
 
-4. **Environment Variables**
+4. **Configure Environment Variables**
 
-   Create a `.env` file in both `frontend` and `backend` directories with the necessary environment variables. A sample of required variables can be found in `.env.example` (add as needed based on your configuration).
+   Create a `.env` file in the `backend` directory with the following variables:
+
+   ```dotenv
+   MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net
+   DB_NAME=purity_ai
+   ```
+
+   Replace `<username>` and `<password>` with your MongoDB credentials.
+
+---
 
 ## Usage
 
-- **Candidate Workflow**: Candidates can create an account, upload a resume, and complete a questionnaire. They’ll receive periodic reminders to update their information.
-- **Recruiter Workflow**: Recruiters can use a chat-like interface to enter specific job requirements. Purity AI will process the query and return ranked candidates based on fit.
+### Candidate Workflow
+
+1. Candidates sign up via the frontend.
+2. They upload their resume (handled by the frontend and stored via Cloudinary).
+3. Resumes are sent to the backend for parsing and storage in MongoDB.
+
+### Recruiter Workflow
+
+1. Recruiters query the system for candidates matching specific job criteria (e.g., "React developer with 3+ years of experience").
+2. The backend uses semantic similarity to rank candidates and returns a list of matching user IDs.
+
+---
 
 ## Project Structure
 
@@ -87,21 +108,74 @@ purity-ai/
 ├── frontend/                  # Next.js app for frontend
 │   └── ...                    # UI components, pages, and styles
 ├── backend/                   # Python backend for AI processing
-│   ├── env/                   # Virtual environment (not tracked in Git)
-│   ├── app.py                 # Main backend server file
-│   ├── model/                 # Folder for AI models and resume parsing
-│   └── requirements.txt       # Python dependencies
+│   ├── app/                   # Main application code
+│   │   ├── main.py            # FastAPI app entry point
+│   │   ├── routes/            # API routes
+│   │   │   ├── resume.py      # Resume upload and parsing endpoint
+│   │   │   ├── search.py      # Candidate search endpoint
+│   │   ├── models/            # Database models
+│   │   │   ├── candidate.py   # MongoDB operations
+│   │   ├── utils/             # Utility functions
+│   │   │   ├── resume_parser.py # Resume parsing logic
+│   │   │   ├── embeddings.py  # Semantic similarity logic
+│   ├── requirements.txt       # Python dependencies
+│   └── .env                   # Environment variables
 └── README.md                  # Project documentation
 ```
 
+---
+
+## Backend API Endpoints
+
+### 1. **Parse and Store Resume**
+
+**Endpoint**: `POST /api/resume/`  
+**Request Body**:
+```json
+{
+    "userId": "user123",
+    "resume_url": "https://example.com/path/to/resume.pdf"
+}
+```
+**Response**:
+```json
+{
+    "message": "Resume parsed and stored successfully",
+    "candidate_id": "64fb876e5a1e9c001cb9d8c5"
+}
+```
+
+---
+
+### 2. **Search Candidates**
+
+**Endpoint**: `GET /api/search/`  
+**Query Parameters**:
+- `query` (string): The recruiter’s search criteria.
+- `top_k` (integer): Number of top candidates to return (optional, defaults to 3).
+
+**Response**:
+```json
+{
+    "query": "React developer",
+    "userIds": ["user123", "user456"]
+}
+```
+
+---
+
 ## AI Functionality
 
-- **Resume Parsing**: Uses spaCy to extract skills, experiences, and key phrases from resumes.
-- **Candidate Ranking**: Based on a scoring algorithm using scikit-learn, candidates are ranked on a query-specific basis.
+- **Resume Parsing**:
+  - Extracts name, email, phone number, skills, experiences, and projects using `spaCy` and custom logic.
+- **Semantic Search**:
+  - Uses `Sentence Transformers` to compute embeddings for recruiter queries and candidate data for similarity ranking.
+
+---
 
 ## Contributing
 
-We welcome contributions! Please follow the steps below:
+We welcome contributions! Follow these steps:
 
 1. Fork the repository.
 2. Create a feature branch:
@@ -114,10 +188,18 @@ We welcome contributions! Please follow the steps below:
    ```
 4. Open a pull request in the main repository.
 
+---
+
 ## License
 
 This project is licensed under the MIT License.
 
+---
+
 ## Contact
 
 For questions or suggestions, please reach out to [Your Email](mailto:your-email@example.com).
+
+---
+
+Let me know if you need further customization or clarification!
