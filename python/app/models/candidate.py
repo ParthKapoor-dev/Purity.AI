@@ -24,13 +24,42 @@ async def get_all_candidates(db: AsyncIOMotorDatabase):
     return candidates
 
 
-async def get_user_ids(db: AsyncIOMotorDatabase, candidate_ids: list):
+from bson import ObjectId
+from fastapi.encoders import jsonable_encoder
+
+from bson import ObjectId
+
+async def get_users_by_ids(db: AsyncIOMotorDatabase, user_ids):
     """
-    Fetch only the userId for candidates matching the search criteria.
+    Fetch user details from the User model based on an array of userIds.
     """
-    pipeline = [
-        {"$match": {"_id": {"$in": candidate_ids}}},
-        {"$project": {"_id": 0, "userId": 1}},  # Exclude _id and include only userId
-    ]
-    result = await db["candidates"].aggregate(pipeline).to_list(length=len(candidate_ids))
-    return [doc["userId"] for doc in result]
+    try:
+        # Ensure that user_ids are being converted correctly to ObjectId
+        object_ids = [ObjectId(user_id) for user_id in user_ids if ObjectId.is_valid(user_id)]
+        
+        print("object ids " , object_ids)
+
+        if not object_ids:
+            print("No valid ObjectIds found.")
+            return []
+
+        # Query the User collection
+        users = await db["User"].find({"_id": {"$in": object_ids}}).to_list(None)
+        
+        print("users before" , users)
+        
+        return [custom_jsonable_encoder(user) for user in users]
+    except Exception as e:
+        print(f"Error fetching users: {e}")
+        return []
+
+    
+def custom_jsonable_encoder(obj):
+    if isinstance(obj, ObjectId):
+        return str(obj)  # Convert ObjectId to string
+    # Handle other types
+    if isinstance(obj, dict):
+        return {key: custom_jsonable_encoder(value) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        return [custom_jsonable_encoder(item) for item in obj]
+    return obj  # Default case for other types

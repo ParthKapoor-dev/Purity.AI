@@ -10,6 +10,7 @@ async def search_candidates_route(query: str, top_k: int = 3):
     """
     try:
         results = await search_candidates(query, top_k)
+        print("results are " , results)
         return {"query": query, "results": results}
 
     except Exception as e:

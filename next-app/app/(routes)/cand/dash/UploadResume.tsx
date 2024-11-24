@@ -22,6 +22,27 @@ export default function UploadResume() {
             });
 
             console.log('Profile created:', profile);
+
+            const userId = session?.user.id;
+            const url =  process.env.AI_SERVER + `/api/resume/?resume_url=${encodeURIComponent(resumeLink)}${userId ? `&userId=${encodeURIComponent(userId)}` : ''}`;
+
+            // const body = JSON.stringify({
+            //     userId: session?.user.id,
+            //     resume_url: resumeLink
+            // });
+
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "content-type": "Application/json"
+                },
+                // body,
+            });
+
+            const json = await response.json();
+
+            console.log(json);
+
         } catch (error: any) {
             console.error('Error creating profile:', error.message);
             throw error;

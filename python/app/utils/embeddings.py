@@ -1,5 +1,5 @@
 from sentence_transformers import SentenceTransformer, util
-from app.models.candidate import get_all_candidates , get_user_ids
+from app.models.candidate import get_all_candidates , get_users_by_ids
 
 # Load model
 model = SentenceTransformer("all-MiniLM-L6-v2")
@@ -16,6 +16,7 @@ async def search_candidates(query: str, top_k: int = 3):
     
     candidates = [custom_jsonable_encoder(candidate) for candidate in candidates]
 
+    print("candidates are " , candidates)
     
     if not candidates:
         return []  # If no candidates, return an empty list
@@ -41,14 +42,21 @@ async def search_candidates(query: str, top_k: int = 3):
 
     # Get the top-k most similar candidates
     top_results = similarities.topk(k=top_k)
+    
+    print("top results " , top_results)
 
     # Get candidate ObjectIds
-    candidate_ids = [candidates[idx.item()]["_id"] for idx in top_results[1]]
+    user_ids = [candidates[idx.item()]["userId"] for idx in top_results[1]]
 
-    # Fetch userIds for the matching candidates
-    user_ids = await get_user_ids(db, candidate_ids)
-
+    print("User Ids " , user_ids)
+    
     return user_ids
+
+    users = await get_users_by_ids( db , user_ids)
+    
+    print("Users are " , users)
+    
+    return users
 
 
 from fastapi.encoders import jsonable_encoder

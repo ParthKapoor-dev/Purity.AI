@@ -57,14 +57,19 @@ export const authOptions: NextAuthOptions = {
 
       const cookieStore = await cookies();
       const user_role = cookieStore.get('user_role')?.value;
-      let role: "CANDIDATE" | "RECRUITER" = "CANDIDATE"
-      if (user_role == "RECRUITER") role = "RECRUITER"
+      let role: "CANDIDATE" | "RECRUITER" | null = null
+      if (user_role == "RECRUITER") role = "RECRUITER";
+      else if( user_role == "CANDIDATE") role = "CANDIDATE";
 
-      if (dbUser.role == null)
+
+      if (dbUser.role == null && role !== null) {
+        console.log("Received Role ", role);
+
         await prisma.user.update({
           where: { email: dbUser.email || "" },
-          data: { role: role }
+          data: { role }
         })
+      }
 
       return {
         id: dbUser.id,
@@ -72,7 +77,7 @@ export const authOptions: NextAuthOptions = {
         email: dbUser.email,
         picture: dbUser.image,
         username: dbUser.username,
-        role : dbUser.role ? dbUser.role : role
+        role: dbUser.role ? dbUser.role : role
       }
     },
 
@@ -84,4 +89,4 @@ export const authOptions: NextAuthOptions = {
 };
 
 
-export const getAuthSession = ()=> getServerSession(authOptions)
+export const getAuthSession = () => getServerSession(authOptions)

@@ -6,7 +6,7 @@ import {
     ArrowDownWideNarrow,
     CornerRightDown,
 } from "lucide-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, MutableRefObject, SetStateAction, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
@@ -67,14 +67,14 @@ export default function AiInput({ onSubmit }: AiInputProps) {
 
     const handleSubmit = async () => {
 
-        await onSubmit(inputValue , selectedItem);
+        await onSubmit(inputValue, selectedItem);
         setInputValue("");
         setSelectedItem(null);
         adjustHeight(true);
     };
 
     return (
-        <div className="w-full py-4">
+        <div className="w-full py-4" >
             <div className="relative max-w-xl w-full mx-auto">
                 <div className="relative border border-black/10 dark:border-white/10 focus-within:border-black/20 dark:focus-within:border-white/20 rounded-2xl bg-black/[0.03] dark:bg-white/[0.03]">
                     <div className="flex flex-col">
