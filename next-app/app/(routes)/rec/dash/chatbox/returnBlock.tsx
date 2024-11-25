@@ -39,7 +39,7 @@ function Candidate({ user } : { user : candidate}){
                 ({user.email})
             </p>
 
-            <Link href={user.profile.resumeLink} className=" cursor-pointer hover:underline text-blue-900">
+            <Link href={user.profile?.resumeLink ? user.profile.resumeLink : ""} target="_blank" className=" cursor-pointer hover:underline text-blue-900">
                 Resume
             </Link>
 

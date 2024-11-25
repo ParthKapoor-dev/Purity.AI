@@ -1,7 +1,8 @@
 import DevBlock from "@/components/Home/DevBlock";
 import { DevLinks } from "@/components/Home/DevLinks";
-import ParticlesHeroSection from "@/components/Home/HeroSection";
+import { ParticlesHeroSection } from "@/components/Home/HeroSection";
 import TechStackList from "@/components/Home/TechStackList";
+import Particles from "@/components/ui/particles";
 
 export default function App() {
 
@@ -9,7 +10,7 @@ export default function App() {
     <div className="py-2 mb-10 flex flex-col gap-8">
 
       <div className="mt-4 flex gap-8 max-md:flex-col">
-        <ParticlesHeroSection title={"Your Next JS Starter Pack"}  />
+        <ParticlesHeroSection title="Purity AI" />
 
         <TechStackList items={items} />
       </div>
@@ -33,73 +34,66 @@ const devLinks = {
 
 const items = [
   {
-    name: "Next JS",
-    description: "The React Framework for the Web",
+    name: "Parth Kapoor",
+    description: "Placed at Amazon",
     icon: "👑",
     color: "#333333",
     link: "https://nextjs.org/"
   },
   {
-    name: "Prisma",
-    description: "Simplified Database working",
+    name: "Giriraj Dhyani",
+    description: "Interned at Google",
     icon: "👤",
     color: "#FFB800",
     link: "https://prisma.io/"
   },
   {
-    name: "Next Auth",
-    description: "For Secure Authentication",
+    name: "Aarya Agarwal",
+    description: "Declared Drug Addict at Thapar University",
     icon: "💬",
     color: "#FF3D71",
     link: "https://next-auth.js.org/"
   },
   {
-    name: "ShadCN UI",
-    description: "Customizable & Resuable UI Components",
-    icon: "🗞️",
-    color: "#1E86FF",
-    link: "https://ui.shadcn.com/"
-  },
-  {
-    name: "Magic UI",
-    description: "Latest Design UI / UX",
+    name: "Shishimaru",
+    description: "Biggest Perv of India",
     icon: "💫",
     color: "#FF4D71",
     link: "https://magicui.design/"
   },
   {
-    name: "Tailwind CSS",
-    description: "Customizable & Resuable UI Components",
+    name: "Gouri Rabgotra",
+    description: "AI Specialist",
     icon: "👻",
     color: "#EE86RF",
     link: "https://tailwindcss.com/"
   },
   {
-    name: "Framer Motion",
-    description: "Fast & Amazing Animations",
+    name: "Deepok Bhagat",
+    description: "President at Racist Society of India",
     icon: "🏎️",
     color: "#000000",
     link: "https://www.framer.com/motion"
   },
   {
-    name: "Next Themes",
-    description: "To Setup your own theming",
+    name: "Anisha Sharma",
+    description: "Cultivation Engineering",
     icon: "🎡",
     color: "#87CEEB",
     link: "https://ui.shadcn.com/docs/dark-mode/next"
   },
-  {
-    name: "Lucide-react",
-    description: "Easy to use Icons",
-    icon: "🍦",
-    color: "#FFC0CB",
-    link: "https://lucide.dev/"
-  },
-  {
-    name: "Intercepting Auth Routes",
-    description: "Implemeted @AuthModal Routes",
-    icon: "🔐",
-    color: "#1E3A8A",
-    link: "https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes"
-  },
+  // {
+  //   name: "Lucide-react",
+  //   description: "Easy to use Icons",
+  //   icon: "🍦",
+  //   color: "#FFC0CB",
+  //   link: "https://lucide.dev/"
+  // },
+  // {
+  //   name: "Intercepting Auth Routes",
+  //   description: "Implemeted @AuthModal Routes",
+  //   icon: "🔐",
+  //   color: "#1E3A8A",
+  //   link: "https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes"
+  // },
 ];

@@ -8,12 +8,15 @@ import ReturnBlock from "./chatbox/returnBlock";
 import InputBlock from "./chatbox/inputBlock";
 import { Trash } from "lucide-react";
 import getUsersByIds from "./chatbox/getUsers";
+import Loader from "./chatbox/loader";
 
 export default function RecruiterDashboard() {
     const [blocks, setBlocks] = useState<Block[]>(() => {
         const blocks = localStorage.getItem("blocks");
         return blocks ? JSON.parse(blocks) : [];
     });
+
+    const [loading , setLoading ] = useState(false);
 
     const aiInputRef = useRef<SVGSVGElement | undefined>(null);
     const aiInputResponse = "These are the Eligible Candidates according to your query";
@@ -37,6 +40,8 @@ export default function RecruiterDashboard() {
         });
 
         const top_k = 5;
+
+        setLoading(true);
 
         try {
             const url = process.env.AI_SERVER || "http://localhost:8000" +
@@ -69,6 +74,8 @@ export default function RecruiterDashboard() {
             }
         } catch (error) {
             console.error("Error fetching AI response:", error);
+        }finally{
+            setLoading(false);
         }
     }
 
@@ -89,7 +96,12 @@ export default function RecruiterDashboard() {
                 })}
             </div>
 
-            {/* Add reference to AiInput */}
+            {loading && (
+                <div>
+                    <Loader />
+                </div>
+            )}
+
             <AiInput onSubmit={handleAddNewBlock} />
 
             <div className="flex justify-end w-full max-w-xl items-center gap-6 text-red-500">

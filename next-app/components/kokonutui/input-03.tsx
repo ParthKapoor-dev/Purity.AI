@@ -5,10 +5,7 @@ import { cn } from "@/lib/utils";
 import { Upload, X, FileText } from "lucide-react";
 import { useFileInput } from "@/hooks/use-file-input";
 import { Button } from "../ui/button";
-
-import { v2 as cloudinary } from "cloudinary";
-import { prisma } from "@/prisma/db";
-import { getAuthSession } from "@/app/api/auth/[...nextauth]/auth";
+import { toast } from "../ui/use-toast";
 
 export default function UploadInput({ createUserProfile }: {
     createUserProfile: (url: string) => Promise<void>
@@ -48,14 +45,13 @@ export default function UploadInput({ createUserProfile }: {
 
     async function UploadPDF(file: any) {
 
-
-
         if (file == null) return;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", "q57z0cod");
         formData.append("resource_type", "raw"); // Specify 'raw' for PDFs
 
+        setLoading(true);
 
         try {
 
@@ -71,16 +67,28 @@ export default function UploadInput({ createUserProfile }: {
             const data = await response.json();
 
             if (response.ok) {
-                alert("Upload successful!");
-                console.log("Uploaded file URL:", data);
 
+                toast({
+                    variant : "default",
+                    title : "Upload Successful"
+                });
                 await createUserProfile(data.secure_url)
 
             } else {
-                alert("Upload failed: " + data.error.message);
+                toast({
+                    variant : "destructive",
+                    title : "Upload Failed",
+                    description : data.error.message
+                });
             }
         } catch (error: any) {
-            alert("An error occurred while uploading: " + error.message);
+            toast({
+                variant : "destructive",
+                title : "An error occurred while uploading",
+                description : error.message
+            });
+        } finally {
+            setLoading(false);
         }
     }
 

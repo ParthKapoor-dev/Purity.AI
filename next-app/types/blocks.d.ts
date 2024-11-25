@@ -22,6 +22,8 @@ export interface candidate {
     role: Role | null;
     image: string | null;
     profile : {
-        resumeLink : string
-    }
+        resumeLink : string,
+        id : string,
+        userId : string
+    } | null
 }
