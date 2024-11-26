@@ -74,6 +74,11 @@ export default function UploadInput({ createUserProfile }: {
                 });
                 await createUserProfile(data.secure_url)
 
+                toast({
+                    variant : "default",
+                    title : "OnBoarding Successful"
+                });
+
             } else {
                 toast({
                     variant : "destructive",
