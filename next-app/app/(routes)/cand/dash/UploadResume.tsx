@@ -25,7 +25,7 @@ export default function UploadResume() {
             console.log('Profile created:', profile);
 
             const userId = session?.user.id;
-            const url =  process.env.AI_SERVER + `/api/resume/?resume_url=${encodeURIComponent(resumeLink)}${userId ? `&userId=${encodeURIComponent(userId)}` : ''}`;
+            const url =  process.env.NEXT_PUBLIC_AI_SERVER + `/api/resume/?resume_url=${encodeURIComponent(resumeLink)}${userId ? `&userId=${encodeURIComponent(userId)}` : ''}`;
 
             const response = await fetch(url, {
                 method: "POST",

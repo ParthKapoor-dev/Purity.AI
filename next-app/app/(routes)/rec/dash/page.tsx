@@ -44,7 +44,7 @@ export default function RecruiterDashboard() {
         setLoading(true);
 
         try {
-            const url = process.env.AI_SERVER || "http://localhost:8000" +
+            const url = process.env.NEXT_PUBLIC_AI_SERVER || "http://localhost:8000" +
                 `/api/search/?query=${encodeURIComponent(input)}&top_k=${top_k}`;
 
             const response = await fetch(url, {

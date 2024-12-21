@@ -48,7 +48,7 @@ export default function UploadInput({ createUserProfile }: {
         if (file == null) return;
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("upload_preset", "q57z0cod");
+        formData.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!);
         formData.append("resource_type", "raw"); // Specify 'raw' for PDFs
 
         setLoading(true);
@@ -65,6 +65,7 @@ export default function UploadInput({ createUserProfile }: {
             );
 
             const data = await response.json();
+            console.log(data);
 
             if (response.ok) {
 
